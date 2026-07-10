@@ -89,6 +89,7 @@ Projects for audio understanding and analysis.
 
 - [**Music Explorer**](./audio/music_explorer) — Chat with any audio file or YouTube video using Gemini 3 Flash. Ask for transcriptions, emotion analysis, instrument identification, and timestamp-aware breakdowns.
 - [**Multilingual Audio Translator**](./audio/multilingual_audio_translator) — Upload or record audio in any language, get it transcribed with faster-whisper, translated via Gemini, and played back as synthesized speech using Kokoro TTS.
+- [**Customer Support Voice Agent**](./audio/customer_support_voice_agent) — Voice AI agent that answers phone calls for customer support, built with the Telnyx AI Assistant Builder and a FastAPI webhook that injects live context into every call.
 
 ### 🎬 Multimodal
 
