@@ -1,0 +1,7 @@
+[server]
+# Disable the file watcher entirely. "poll" still walks every submodule of
+# large packages like transformers to build its watch list, which triggers
+# harmless but noisy ModuleNotFoundError output for optional deps (e.g.
+# torchvision) at every startup. "none" skips that walk; just rerun manually
+# (r) after editing source instead of relying on hot-reload.
+fileWatcherType = "none"

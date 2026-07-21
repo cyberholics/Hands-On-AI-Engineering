@@ -1,0 +1,18 @@
+[project]
+name = "research-assistant-with-memory"
+version = "0.1.0"
+description = "Multi-agent research assistant with persistent memory and self-evaluation, powered by Actian VectorAI DB"
+requires-python = ">=3.10,<3.14"
+
+dependencies = [
+    "actian-vectorai-client>=1.0.0",
+    "sentence-transformers>=3.0.0",
+    "langgraph>=0.2.0",
+    "ollama>=0.4.0",
+    "pypdf>=4.0.0",
+    "streamlit>=1.35.0",
+    "python-dotenv>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["research_assistant*"]

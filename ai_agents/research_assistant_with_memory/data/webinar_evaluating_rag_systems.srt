@@ -1,0 +1,68 @@
+1
+00:00:00,000 --> 00:00:05,200
+Thanks for joining. Today we're talking about how to actually evaluate a
+retrieval-augmented generation system once you've built one.
+
+2
+00:00:05,200 --> 00:00:11,800
+Most teams start by eyeballing a handful of answers, which catches the
+obvious failures but misses everything else.
+
+3
+00:00:11,800 --> 00:00:18,400
+The first thing to separate is retrieval quality from generation quality.
+These fail independently and need different fixes.
+
+4
+00:00:18,400 --> 00:00:25,000
+For retrieval, the standard metrics are recall at k and mean reciprocal
+rank, measured against a labeled set of query to relevant passage pairs.
+
+5
+00:00:25,000 --> 00:00:31,600
+If recall at k is low, no amount of prompt engineering on the generation
+side will fix the system, because the evidence was never retrieved.
+
+6
+00:00:31,600 --> 00:00:38,200
+For generation, we care about groundedness, whether every claim in the
+answer is actually supported by the retrieved passages.
+
+7
+00:00:38,200 --> 00:00:45,000
+An answer can be fluent and confident and still be ungrounded if the model
+fills a gap in the retrieved evidence with something from its own training.
+
+8
+00:00:45,000 --> 00:00:51,400
+A practical way to check groundedness at scale is to use a second model as
+a judge, scoring correctness, completeness, and clarity separately.
+
+9
+00:00:51,400 --> 00:00:58,000
+The judge should always be shown the same evidence the generator was
+shown, otherwise you're grading against the judge's own knowledge instead.
+
+10
+00:00:58,000 --> 00:01:04,600
+We've also found it useful to log every tool call the system makes, not
+just the final answer, because that's what makes failures debuggable.
+
+11
+00:01:04,600 --> 00:01:11,200
+When a run fails, you want to see which sub-queries were issued, what came
+back, and where the answer diverged from the evidence.
+
+12
+00:01:11,200 --> 00:01:17,800
+One limitation worth naming: automated judges tend to be lenient on
+completeness and stricter on correctness, so track them separately.
+
+13
+00:01:17,800 --> 00:01:24,000
+Running the same fixed question set after every prompt change is what
+turns this from vibes into an actual regression test.
+
+14
+00:01:24,000 --> 00:01:28,000
+That's the core loop. Happy to take questions.
